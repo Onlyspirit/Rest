@@ -1,0 +1,264 @@
+/* 🌑 Global Dark Base */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0e0e0e;
+  color: #f1f1f1;
+}
+
+/* 🧱 Layout */
+.landing-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 🌆 Left Hero Section */
+.hero {
+  flex: 1.2;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.overlay p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* 🔘 Buttons */
+button {
+  padding: 12px 25px;
+  border-radius: 5px;
+  border: 1px solid #f33;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #f33;
+  transform: translateY(-2px);
+}
+
+.secondary {
+  border-color: #888;
+  color: #ccc;
+}
+
+.secondary:hover {
+  background-color: #333;
+}
+
+/* 📘 Right Info Section */
+.info {
+  flex: 0.8;
+  background: radial-gradient(circle at top left, #141414, #0e0e0e);
+  color: #f1f1f1;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight {
+  max-width: 500px;
+  animation: fadeIn 1s ease;
+}
+
+.highlight h2 {
+  font-size: 2.3rem;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.highlight .intro {
+  font-size: 1.05rem;
+  color: #ccc;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.feature {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.feature i {
+  font-size: 1.5rem;
+  color: #f33;
+}
+
+.feature h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.feature p {
+  margin: 3px 0 0;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 40px;
+  background-color: #f33;
+  padding: 12px 25px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #ff5050;
+}
+
+/* ✨ Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 Responsiveness */
+
+/* 🧩 Medium screens (tablets) */
+@media (max-width: 1024px) {
+  .landing-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .hero {
+    height: 50vh;
+  }
+
+  .info {
+    width: 100%;
+    padding: 40px 25px;
+  }
+
+  .highlight h2 {
+    font-size: 2rem;
+  }
+
+  .overlay h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* 📲 Small screens (phones) */
+@media (max-width: 768px) {
+  .landing-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero {
+    height: 45vh;
+    padding: 20px;
+  }
+
+  .info {
+    padding: 30px 20px;
+  }
+
+  .highlight h2 {
+    font-size: 1.8rem;
+  }
+
+  .overlay h1 {
+    font-size: 2rem;
+  }
+
+  .highlight .intro {
+    font-size: 0.95rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+/* 📞 Extra small (very small phones) */
+@media (max-width: 480px) {
+  .hero {
+    height: 40vh;
+  }
+
+  .overlay h1 {
+    font-size: 1.7rem;
+  }
+
+  .overlay p {
+    font-size: 0.9rem;
+  }
+
+  .highlight h2 {
+    font-size: 1.5rem;
+  }
+
+  .highlight .intro {
+    font-size: 0.85rem;
+  }
+
+  .feature i {
+    font-size: 1.2rem;
+  }
+
+  .feature h4 {
+    font-size: 1rem;
+  }
+
+  .cta-btn {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+}

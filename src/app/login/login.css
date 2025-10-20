@@ -1,0 +1,168 @@
+/* 🌙 GENERAL STYLES */
+body {
+  background-color: #0e0e0e;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.parent {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #111;
+
+}
+
+/* LEFT PANEL */
+.first {
+  background-color: rgb(17, 15, 15);
+  width: 55%;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://images.unsplash.com/photo-1755965740572-f41b92952aa0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGxlYXJuaW5nJTIwbWFuYWdlbWVudCUyMHN5c3RlbSUyMGRhcmslMjBjb2xvcnN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500');
+  background-size: cover;
+  background-position: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #f5f5f5;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #b0b0b0;
+  margin-bottom: 40px;
+}
+
+.side-img {
+  width: 80%;
+  max-width: 400px;
+  margin-top: 20px;
+  align-self: center;
+  opacity: 0.9;
+}
+
+/* RIGHT PANEL */
+.second {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #181818;
+}
+
+.third {
+  border: 1px solid #444;
+  border-radius: 15px;
+  padding: 30px;
+  width: 80%;
+  max-width: 400px;
+  background-color: #1c1c1c;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #ccc;
+}
+
+input {
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #666;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+input:focus {
+  border-color: #4caf50;
+}
+
+.inputt {
+  font-size: 1rem;
+  padding: 12px;
+  background-color: transparent;
+  border: 1px solid #4caf50;
+  color: #4caf50;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.inputt:hover {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  color: #aaa;
+  text-align: center;
+}
+
+.link {
+  color: #4caf50;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* 📱 RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .parent {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .first {
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .second {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .third {
+    width: 95%;
+  }
+
+  .side-img {
+    display: none;
+  }
+}
+
+.first {
+  position: relative;
+}
+.first::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}

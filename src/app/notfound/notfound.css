@@ -1,0 +1,147 @@
+/* 🌑 Base Setup */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0e0e0e;
+  color: #f1f1f1;
+}
+
+/* 🧩 Layout */
+.not-found-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 🖼️ Left Side (Visual Section) */
+.left {
+  width: 55%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('https://images.unsplash.com/photo-1593250612808-b48b1f765b35?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fGJyb2tlbiUyMHBlbmNpbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.left .brand {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.left p {
+  color: #ccc;
+  font-size: 1.1rem;
+}
+
+/* 🚨 Right Side (Message Section) */
+.right {
+  width: 45%;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.content {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  animation: fadeIn 0.7s ease;
+}
+
+.content h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #f33;
+  margin: 0;
+}
+
+.content h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #ddd;
+}
+
+.content p {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.5;
+}
+
+/* 🔘 Button */
+.home-btn {
+  margin-top: 25px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #f33;
+  padding: 10px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: #f33;
+  color: white;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .not-found-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .not-found-container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url('https://images.unsplash.com/photo-1593250612808-b48b1f765b35?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fGJyb2tlbiUyMHBlbmNpbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .content {
+    width: 95%;
+    padding: 25px;
+  }
+
+  .content h1 {
+    font-size: 4rem;
+  }
+}
+
+/* ✨ Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

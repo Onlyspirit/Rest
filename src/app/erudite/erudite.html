@@ -1,1 +1,61 @@
-<p>erudite works!</p>
+<div class="dashboard-container">
+
+  <!-- Sidebar -->
+  <aside [class.open]="sidebarOpen" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo-text">MOScholar</h2>
+    </div>
+    <nav>
+      <a routerLink="/student" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/student/courses" routerLinkActive="active">My Courses</a>
+      <a routerLink="/student/progress" routerLinkActive="active">Progress</a>
+      <a routerLink="/student/profile" routerLinkActive="active">Profile</a>
+      <a (click)="logout()">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Overlay for mobile -->
+  <div class="overlay" [class.show]="sidebarOpen" (click)="toggleSidebar()"></div>
+
+  <!-- Main Content -->
+  <main class="main-content" [class.shift]="sidebarOpen">
+    <div class="topbar">
+      <div class="fs-2 fw-bold text-warning">{{role}} {{firstname}}</div>
+      <div class="topbar-right">
+        <button class="new-course-btn" (click)="enrollCourse()">Enroll</button>
+        <!-- Mobile 'M' toggle -->
+        <button class="logo-toggle" (click)="toggleSidebar()" [class.open]="sidebarOpen">M</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="card">
+        <h3>{{courses.length}}</h3>
+        <p>Courses Enrolled</p>
+      </div>
+      <div class="card">
+        <h3>{{progress}}%</h3>
+        <p>Progress</p>
+      </div>
+      <div class="card">
+        <h3>{{completed}}</h3>
+        <p>Completed Courses</p>
+      </div>
+    </div>
+
+    <!-- Courses Grid -->
+    <div class="courses-grid">
+      <div class="course-card" *ngFor="let course of courses">
+        <img [src]="course.image" alt="course image">
+        <h3>{{course.title}}</h3>
+        <p>{{course.description}}</p>
+        <p class="price">{{course.price > 0 ? '₦' + course.price : 'Free'}}</p>
+        <div class="actions">
+          <button class="enroll-btn" (click)="enroll(course.id)">Enroll</button>
+          <button (click)="viewCourse()">View</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

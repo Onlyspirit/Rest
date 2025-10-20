@@ -1,1 +1,47 @@
-<p>login works!</p>
+<div class="parent">
+  <!-- LEFT PANEL -->
+  <div class="first">
+    <div class="title fs-1 fw-light">MOScholar</div>
+    <p class="subtitle">Welcome back! Log in to continue your learning journey.</p>
+    <!-- <img src="assets/login-illustration.svg" alt="Login illustration" class="side-img"> -->
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="second">
+    <div class="third">
+      <div class="form">
+        <form (ngSubmit)="onLogin()"     [formGroup]="signinpage">
+          <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email"  required placeholder="Enter Email"
+              formControlName="Email" />
+            @if (signinpage.get('email')?.errors) {
+            <div class="text-warning"
+              *ngIf="signinpage.get('email')?.hasError('minlength') && signinpage.get('email')?.dirty || signinpage.get('email')?.touched">
+              enter correct password</div>
+            }
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter Password"
+              formControlName="Password" />
+            @if(signinpage.get('password')?.errors){
+            <div class="text-warning"
+              *ngIf="signinpage.get('password')?.hasError('minlength') && signinpage.get('password')?.dirty || signinpage.get('password')?.touched">
+              enter correct password
+            </div>
+            }
+          </div>
+
+          <input class="inputt" type="submit" value="Login">
+
+          <p class="footer-text">
+            Don’t have an account?
+            <span class="link" (click)="signup()">Create one</span>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

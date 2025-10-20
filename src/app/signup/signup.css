@@ -1,0 +1,272 @@
+/* 🌑 Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0e0e0e;
+  color: #f1f1f1;
+}
+
+/* 🧩 Layout Wrapper */
+.parent {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+/* 🖼️ Left Side (Visual) */
+.first {
+  flex: 1 1 55%;
+  background-image: url('https://images.unsplash.com/photo-1649566028194-f7dfb930a286?auto=format&fit=crop&q=60&w=600');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.first h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.first p {
+  font-size: 1.1rem;
+  color: #ccc;
+  max-width: 400px;
+}
+
+/* 📝 Form Container */
+.second {
+  flex: 1 1 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+  padding: 2rem;
+}
+
+.third {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  animation: fadeIn 0.7s ease;
+}
+
+/* 🔤 Inputs */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+/* ✅ Unified Select Styling */
+.select,
+select {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #555;
+  outline: none;
+  padding: 10px;
+  font-size: 0.95rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #f1f1f1;
+  transition: all 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+select:focus {
+  border-color: #f33;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 🌑 Dropdown Options (visible text on dark mode) */
+option {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* 🧠 Fix dropdown arrows (Safari/Windows) */
+select::-ms-expand {
+  display: none;
+}
+
+input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #555;
+  outline: none;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #f1f1f1;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #f33;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+/* 🚀 Submit Button */
+.inputt {
+  width: 100%;
+  height: 50px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #f33;
+  background-color: transparent;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.inputt:hover {
+  background-color: #f33;
+  color: white;
+}
+
+/* 🔗 Login Link */
+.login-link {
+  margin-top: 10px;
+  text-align: center;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.login-link span {
+  color: #f33;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-link span:hover {
+  text-decoration: underline;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 1024px) {
+  .first h2 {
+    font-size: 2rem;
+  }
+
+  .first p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .third {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .parent {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .first {
+    flex: none;
+    height: 250px;
+    background-size: cover;
+    padding: 1.5rem 1rem;
+    justify-content: flex-end;
+  }
+
+  .first h2 {
+    font-size: 1.8rem;
+  }
+
+  .first p {
+    font-size: 0.95rem;
+  }
+
+  .second {
+    flex: none;
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+
+  .third {
+    width: 100%;
+    padding: 1.5rem;
+    margin-top: 10px;
+  }
+
+  input, select, .inputt {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .first {
+    height: 200px;
+    padding: 1rem;
+  }
+
+  .first h2 {
+    font-size: 1.4rem;
+  }
+
+  .first p {
+    font-size: 0.9rem;
+  }
+
+  .third {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .inputt {
+    height: 45px;
+    font-size: 0.95rem;
+  }
+
+  .login-link {
+    font-size: 0.85rem;
+  }
+}
+
+/* ✨ Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

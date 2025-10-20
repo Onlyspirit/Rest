@@ -1,1 +1,73 @@
-<p>signup works!</p>
+<div class="parent">
+  <!-- Left Side (Large screen visual) -->
+  <section class="first">
+    <div class="fs-1 fw-normal">MOScholar</div>
+    <p>Welcome to Sign Up — Begin Your Learning Journey</p>
+  </section>
+
+  <!-- Right Side (Form Section) -->
+  <section class="second">
+    <div class="third">
+      <form class="form" [formGroup]="signuppage" (ngSubmit)="signup()">
+        <div class="input-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Enter Firstname" formControlName="Firstname">
+          @if (signuppage.get('Firstname')?.errors){
+          <div class="text-warning text-center"
+            *ngIf="signuppage.get('Firstname')?.hasError('minlength') && (signuppage.get('Firstname')?.dirty) || (signuppage.get('Firstname')?.touched)">
+            Firstname should be at least 3 characters long.
+          </div>
+          }
+        </div>
+
+        <div class="input-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Enter Lastname" formControlName="Lastname">
+          @if(signuppage.get('Lastname')?.errors){
+          <div class="text-warning text-center"
+            *ngIf="signuppage.get('Lastname')?.hasError('minlength')&& signuppage.get('Lastname')?.dirty || signuppage.get('Lastname')?.touched">
+            Lastname
+            should be at least 3 characters long.</div>
+          }
+        </div>
+
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="Enter Email" formControlName="email">
+          @if(signuppage.get('email')?.errors){
+          <div class="text-warning text-center"
+            *ngIf="signuppage.get('email')?.hasError('minlength') && signuppage.get('email')?.dirty || signuppage.get('email')?.touched">
+            use a correct email address
+          </div>
+          }
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter Password" formControlName="password">
+          @if(signuppage.get('password')?.errors){
+          <div class="text-warning text-center"
+            *ngIf="signuppage.get('password')?.hasError('minlength') && signuppage.get('password')?.dirty || signuppage.get('password')?.touched">
+            password must have at least a special character, upper&lower case,number and minimum of 8 characters
+          </div>
+          }
+        </div>
+        <div class="input-group select" id="roles">
+          <select name="" id="roles" value="Kindly Click to select Row" formControlName="role">
+            <option value="" disabled selected hidden>Select role</option>
+            <option value="Erudite">Erudite</option>
+            <option value="Instructor">Instructor</option>
+          </select>
+        </div>
+
+        <input class="inputt" type="submit" value="Create Account">
+        <!-- @if(signuppage.valid && this.test && signup() ){
+        <p style="color: white;" class="warning">Erudidte, input all fields correctly</p>
+        } -->
+        <p class="login-link">
+          Already have an account?
+          <span (click)="signin()">Login</span>
+        </p>
+      </form>
+    </div>
+  </section>
+</div>
