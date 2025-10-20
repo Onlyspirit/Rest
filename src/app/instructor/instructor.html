@@ -1,1 +1,63 @@
-<p>instructor works!</p>
+<div class="dashboard-container">
+
+  <!-- Sidebar -->
+  <aside [class.open]="sidebarOpen" class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="logo-text">MOScholar</h2>
+    </div>
+    <nav>
+      <a routerLink="/instructor" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/instructor/courses" routerLinkActive="active">My Courses</a>
+      <a routerLink="/instructor/create-course" routerLinkActive="active">Create Course</a>
+      <a routerLink="/instructor/profile" routerLinkActive="active">Profile</a>
+      <a (click)="logout()">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Overlay for mobile -->
+  <div class="overlay" [class.show]="sidebarOpen" (click)="toggleSidebar()"></div>
+
+  <!-- Main Content -->
+  <main class="main-content" [class.shift]="sidebarOpen">
+
+<div class="topbar">
+  <div class="fs-2 fw-bold text-warning">{{role}} {{firstname}}</div>
+  <div class="topbar-right">
+    <button class="new-course-btn" (click)="createCourse()"><span class="fw-bold text-secondary">+</span>Course</button>
+    <button class="logo-toggle" [class.open]="sidebarOpen" (click)="toggleSidebar()">M</button>
+  </div>
+</div>
+
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="card">
+        <h3>{{courses.length}}</h3>
+        <p>Courses</p>
+      </div>
+      <div class="card">
+        <h3>--</h3>
+        <p>Erudite Enrolled</p>
+      </div>
+      <div class="card">
+        <h3>--</h3>
+        <p>Revenue</p>
+      </div>
+    </div>
+
+    <!-- Courses Grid -->
+    <div class="courses-grid">
+      <div class="course-card" *ngFor="let course of courses">
+        <img [src]="course.image" alt="course image">
+        <h3>{{course.title}}</h3>
+        <p>{{course.description}}</p>
+        <p class="price">{{course.price > 0 ? '₦' + course.price : 'Free'}}</p>
+        <div class="actions">
+          <button (click)="enroll(course.id)">Enroll</button>
+          <button>Edit</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div>

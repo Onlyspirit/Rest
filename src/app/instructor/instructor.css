@@ -1,0 +1,245 @@
+/* ==============================
+   Dashboard Container
+============================== */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #1b1b1b;
+}
+
+/* ==============================
+   Sidebar
+============================== */
+.sidebar {
+  width: 220px;
+  background-color: #111;
+  color: #fff;
+  padding: 2rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  box-shadow: 3px 0 10px rgba(0,0,0,0.5);
+}
+.sidebar.open { transform: translateX(0); }
+
+.sidebar-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.logo-text {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* Sidebar nav */
+.sidebar nav a {
+  display: block;
+  color: #ccc;
+  padding: 0.7rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.sidebar nav a.active,
+.sidebar nav a:hover {
+  color: #fff;
+  background-color: #f33;
+}
+
+/* ==============================
+   Overlay
+============================== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 998;
+}
+.overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ==============================
+   Mobile Toggle 'M'
+============================== */
+.logo-toggle {
+  display: none; /* desktop hidden */
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #f33;
+  background: transparent;
+  border: 2px solid #f33;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.4s ease;
+  z-index: 1001;
+}
+.logo-toggle:hover {
+  transform: rotate(90deg);
+  background-color: #f33;
+  color: #fff;
+}
+
+/* Hamburger animation using pseudo-elements */
+.logo-toggle::before,
+.logo-toggle::after {
+  content: '';
+  display: block;
+  width: 1rem;
+  height: 2px;
+  background-color: #f33;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.4s ease;
+}
+.logo-toggle::before { top: 0.4rem; }
+.logo-toggle::after { bottom: 0.4rem; }
+.logo-toggle.open {
+  color: transparent;
+  border-color: #f33;
+}
+.logo-toggle.open::before {
+  transform: translateX(-50%) rotate(45deg) translateY(5px);
+  background-color: #fff;
+}
+.logo-toggle.open::after {
+  transform: translateX(-50%) rotate(-45deg) translateY(-5px);
+  background-color: #fff;
+}
+
+/* ==============================
+   Main content
+============================== */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  color: #f1f1f1;
+  transition: margin-left 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.main-content.shift { margin-left: 220px; }
+
+/* Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.topbar-right {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Buttons */
+.new-course-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #f33;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.new-course-btn:hover { background-color: #d22; }
+.new-course-btn:active,
+.logo-toggle:active { transform: scale(0.95); transition: transform 0.1s; }
+
+/* ==============================
+   Stats
+============================== */
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.stats .card {
+  background-color: #222;
+  padding: 1rem;
+  border-radius: 10px;
+  flex: 1;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.5s forwards;
+}
+.stats .card:nth-child(2) { animation-delay: 0.2s; }
+.stats .card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes slideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==============================
+   Courses grid
+============================== */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+  gap: 1.5rem;
+}
+.course-card {
+  background-color: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 1rem;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.course-card:nth-child(1) { animation-delay: 0.2s; }
+.course-card:nth-child(2) { animation-delay: 0.25s; }
+.course-card:nth-child(3) { animation-delay: 0.3s; }
+.course-card:nth-child(4) { animation-delay: 0.35s; }
+.course-card:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.course-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.course-card img { width: 100%; height: 140px; object-fit: cover; }
+
+/* ==============================
+   Responsive
+============================== */
+@media (max-width: 768px) {
+  .logo-toggle { display: inline-block; }
+  .sidebar { transform: translateX(-100%); }
+  .main-content.shift { margin-left: 0; }
+}
+
+/* ==============================
+   Desktop: always show sidebar
+============================== */
+@media (min-width: 769px) {
+  .sidebar { transform: translateX(0); }
+  .main-content { margin-left: 220px; }
+}
