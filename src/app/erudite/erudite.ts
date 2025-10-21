@@ -14,7 +14,11 @@ export class Erudite implements OnInit {
   private http = inject(HttpClient);
   private cdr = inject(ChangeDetectorRef);
 
-  private apiUrl = 'http://localhost/MOScholar';
+  // ✅ Automatically switch between localhost (dev) and Railway (live)
+  private apiUrl =
+    window.location.hostname === 'localhost'
+      ? 'http://localhost/MOScholar'
+      : 'https://backend-production-dec2.up.railway.app';
 
   sidebarOpen = false;
   allCourses: any[] = [];
