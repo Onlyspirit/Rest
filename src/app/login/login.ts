@@ -30,43 +30,37 @@ export class Login {
 
 
   onLogin() {
-    if (this.signinpage.valid) {
-      this.http.post<{ status: string; message?: string; Firstname?: string; user?: User }>(
-        'http://localhost/MOScholar/login.php',
-        this.signinpage.value
-      ).subscribe(
-        (response) => {
-          if (response.status === 'success' && response.user) {
-            const user = response.user;
-            // console.log(`Welcome ${response.Firstname}!`);
-
-            // Store token and user data
-            localStorage.setItem('auth_token', user.token);
-            localStorage.setItem('user_data', JSON.stringify(user));
-
-            // Navigate based on role
-            const role = user.Role?.toLowerCase();
-            if (role === 'erudite') {
-              this.router.navigate(['./student'], { replaceUrl: true });
-            } else if (role === 'instructor') {
-              this.router.navigate(['./instructor'], { replaceUrl: true });
-            } else {
-              // Optional: handle unknown role
-              alert('Unknown role, cannot navigate.');
-              this.router.navigate(['./login'], { replaceUrl: true });
-            }
-
+  if (this.signinpage.valid) {
+    this.http.post<{ status: string; message?: string; Firstname?: string; user?: User; redirect?: string }>(
+      'http://localhost/MOScholar/login.php',
+      this.signinpage.value
+    ).subscribe(
+      (response) => {
+        if (response.status === 'success' && response.user) {
+          const user = response.user;
+          localStorage.setItem('user_data', JSON.stringify(user));
+          localStorage.setItem('auth_token', user.token); // Ensure token is stored
+          if (response.redirect) {
+            this.router.navigate([response.redirect], { replaceUrl: true });
+          } else if (user.Role?.toLowerCase() === 'erudite') {
+            this.router.navigate(['/student'], { replaceUrl: true });
+          } else if (user.Role?.toLowerCase() === 'instructor') {
+            this.router.navigate(['/instructor'], { replaceUrl: true });
           } else {
-            alert(response.message || 'Login failed');
+            alert('Unknown role, cannot navigate.');
+            this.router.navigate(['/login'], { replaceUrl: true });
           }
-        },
-        (error) => {
-          console.error(error);
-          alert('Something went wrong');
+        } else {
+          alert(response.message || 'Login failed');
         }
-      );
-    }
+      },
+      (error) => {
+        console.error(error);
+        alert('Something went wrong');
+      }
+    );
   }
+}
 
 
 

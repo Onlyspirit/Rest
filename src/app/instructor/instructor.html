@@ -1,15 +1,14 @@
 <div class="dashboard-container">
-
   <!-- Sidebar -->
   <aside [class.open]="sidebarOpen" class="sidebar">
     <div class="sidebar-header">
       <h2 class="logo-text">MOScholar</h2>
     </div>
     <nav>
-      <a routerLink="/instructor" routerLinkActive="active">Dashboard</a>
-      <a routerLink="/instructor/courses" routerLinkActive="active">My Courses</a>
-      <a routerLink="/instructor/create-course" routerLinkActive="active">Create Course</a>
-      <a routerLink="/instructor/profile" routerLinkActive="active">Profile</a>
+      <a (click)="toggleSidebar();">Dashboard</a>
+      <a (click)="toggleSidebar();">My Courses</a>
+      <a (click)="openCreateModal()">Create Course</a>
+      <a (click)="toggleSidebar();">Profile</a>
       <a (click)="logout()">Logout</a>
     </nav>
   </aside>
@@ -19,15 +18,14 @@
 
   <!-- Main Content -->
   <main class="main-content" [class.shift]="sidebarOpen">
-
-<div class="topbar">
-  <div class="fs-2 fw-bold text-warning">{{role}} {{firstname}}</div>
-  <div class="topbar-right">
-    <button class="new-course-btn" (click)="createCourse()"><span class="fw-bold text-secondary">+</span>Course</button>
-    <button class="logo-toggle" [class.open]="sidebarOpen" (click)="toggleSidebar()">M</button>
-  </div>
-</div>
-
+    <div class="topbar">
+      <div class="fs-2 fw-bold text-warning">{{role}} {{Lastname}}</div>
+      <div class="topbar-right">
+        <button class="new-course-btn" (click)="openCreateModal()"><span class="fw-bold text-secondary">+</span>
+          Course</button>
+        <button class="logo-toggle" [class.open]="sidebarOpen" (click)="toggleSidebar()">M</button>
+      </div>
+    </div>
 
     <!-- Stats -->
     <div class="stats">
@@ -53,11 +51,26 @@
         <p>{{course.description}}</p>
         <p class="price">{{course.price > 0 ? '₦' + course.price : 'Free'}}</p>
         <div class="actions">
-          <button (click)="enroll(course.id)">Enroll</button>
-          <button>Edit</button>
+          <button (click)="editCourse(course.id)">Edit</button>
+          <button (click)="uploadVideo(course.id)">Upload Video</button>
         </div>
       </div>
     </div>
-  </main>
 
-</div>
+
+
+  <!-- Create Course Modal -->
+  <div class="modal" [class.show]="showCreateModal">
+    <div class="modal-content">
+      <h2>Create New Course</h2>
+      <form [formGroup]="courseForm" (ngSubmit)="createCourse()">
+        <input formControlName="title" placeholder="Course Title">
+        <textarea formControlName="description" placeholder="Description"></textarea>
+        <input type="number" formControlName="price" placeholder="Price (NGN)" min="0">
+        <input type="file" (change)="onImageUpload($event)" accept="image/*" placeholder="Upload Thumbnail">
+        <img *ngIf="courseForm.get('imageFile')?.value" [src]="courseForm.get('imageFile')?.value" class="thumbnail-preview">
+        <button type="submit" [disabled]="courseForm.invalid">Create Course</button>
+        <button type="button" (click)="closeCreateModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
