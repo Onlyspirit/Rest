@@ -1,49 +1,79 @@
 <div class="landing-container">
-  <!-- Left Section (Intro / Visual) -->
+  <!-- Hero Section -->
   <section class="hero">
-    <div class="overlay">
-      <h1>MOScholar</h1>
-      <p>Empowering Students — Learn, Connect, and Grow with Ease</p>
-      <div class="actions">
-        <button (click)="gotoSignup()">Get Started</button>
-        <button class="secondary" (click)="gotoLogin()">Login</button>
+    <div class="hero-overlay">
+      <h1 class="hero-title">MOScholar: Your Learning Hub</h1>
+      <p class="hero-subtitle">Enroll in Courses, Track Progress, and Connect with a Global Learning Community</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" (click)="gotoSignup()" aria-label="Start learning with MOScholar">Start Learning</button>
+        <button class="btn btn-secondary" (click)="gotoLogin()" aria-label="Log in to MOScholar">Log In</button>
       </div>
     </div>
   </section>
 
-  <!-- Right Section (Highlight Info) -->
-  <section class="info">
-  <div class="highlight">
-    <h2>Empowering Every Student</h2>
-    <p class="intro">
-      MOScholar isn’t just another portal — it’s your academic companion. 
-      Track progress, manage submissions, and connect smarter.
-    </p>
-    <div class="features">
-      <div class="feature">
-        <i class="fas fa-check-circle"></i>
-        <div>
-          <h4>Fast & Reliable</h4>
-          <p>Experience lightning-fast access to your data anywhere, anytime.</p>
+  <!-- Course Preview Section -->
+  <section class="courses">
+    <div class="courses-container">
+      <div class="courses-header">
+        <h2 class="courses-title">Explore Our Courses</h2>
+        <div class="filter-container">
+          <button class="filter-btn" (click)="toggleFilter()" aria-label="Toggle filter options">Filter By</button>
+          <div class="filter-options" [class.show]="showFilter">
+            <button (click)="sortCourses('latest')" aria-label="Sort by latest">Latest</button>
+            <button (click)="sortCourses('old')" aria-label="Sort by oldest">Oldest</button>
+            <button (click)="sortCourses('popular')" aria-label="Sort by popularity">Popular</button>
+            <button (click)="sortCourses('price-low')" aria-label="Sort by price low to high">Price: Low to High</button>
+            <button (click)="sortCourses('price-high')" aria-label="Sort by price high to low">Price: High to Low</button>
+          </div>
         </div>
       </div>
-      <div class="feature">
-        <i class="fas fa-shield-alt"></i>
-        <div>
-          <h4>Secure & Private</h4>
-          <p>Your academic records stay safe with enterprise-grade protection.</p>
-        </div>
-      </div>
-      <div class="feature">
-        <i class="fas fa-graduation-cap"></i>
-        <div>
-          <h4>Built for Students</h4>
-          <p>Every feature is designed to simplify your learning experience.</p>
-        </div>
+      <div class="courses-grid">
+        <article class="course-card" *ngFor="let course of displayedCourses">
+          <img [src]="course.image" alt="{{ course.title }}" (error)="onImageError($event, course)" class="course-image">
+          <p *ngIf="!course.image || course.image === 'assets/placeholder.jpg'" class="no-image">No image available</p>
+          <h3 class="course-title">{{ course.title }}</h3>
+          <p class="course-description">{{ course.description }}</p>
+          <p class="course-price">Price: {{ course.price }} NGN</p>
+          <div class="course-actions">
+            <button class="btn btn-primary" (click)="gotoSignup()" aria-label="Enroll in {{ course.title }}">Enroll</button>
+            <button class="btn btn-secondary" (click)="viewCourseDetails(course.id)" aria-label="View details for {{ course.title }}">View Details</button>
+          </div>
+        </article>
       </div>
     </div>
-    <a routerLink="/signup" class="cta-btn">Join MOScholar</a>
-  </div>
-</section>
+  </section>
 
+  <!-- Feature Section -->
+  <section class="info">
+    <div class="highlight">
+      <h2 class="highlight-title">Empower Your Academic Journey</h2>
+      <p class="highlight-intro">
+        MOScholar is built for students, offering seamless course enrollment, progress tracking, and community engagement to help you succeed.
+      </p>
+      <div class="features-grid">
+        <div class="feature">
+          <i class="fas fa-book-open"></i>
+          <div class="feature-content">
+            <h3>Discover Courses</h3>
+            <p>Explore a wide range of courses and enroll with ease to start learning today.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <i class="fas fa-chart-line"></i>
+          <div class="feature-content">
+            <h3>Monitor Progress</h3>
+            <p>Stay on top of your learning with real-time progress tracking and intuitive dashboards.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <i class="fas fa-users"></i>
+          <div class="feature-content">
+            <h3>Engage & Connect</h3>
+            <p>Join a vibrant community to collaborate with peers and instructors.</p>
+          </div>
+        </div>
+      </div>
+      <a routerLink="/signup" class="btn btn-primary cta-btn" aria-label="Join MOScholar now">Join MOScholar Now</a>
+    </div>
+  </section>
 </div>

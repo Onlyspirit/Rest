@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Block } from '@angular/compiler';
 
 @Component({
   selector: 'app-instructor',
@@ -90,6 +91,7 @@ export class Instructor implements OnInit {
       if (!file.type.startsWith('image/')) {
         alert('⚠️ Please upload a valid image file.');
         this.courseForm.patchValue({ imageFile: null });
+
         return;
       }
       if (file.size > 2 * 1024 * 1024) {
@@ -113,6 +115,10 @@ export class Instructor implements OnInit {
   createCourse() {
     if (this.courseForm.valid) {
       const { title, description, price, imageFile } = this.courseForm.value;
+      if (imageFile === null) {
+        alert('input the image field properly')
+        return;
+      }
       const userId = this.user.id;
       const token = localStorage.getItem('auth_token');
 
@@ -146,12 +152,30 @@ export class Instructor implements OnInit {
     alert(`Editing course ${courseId}`);
   }
 
-  uploadVideo(courseId: string) {
+  upload(courseId: string) {
     alert(`Uploading video for course ${courseId}`);
   }
 
   logout() {
     localStorage.removeItem('user_data');
     window.location.href = '/login';
+  }
+  test = false
+  prices: any = '';
+  paid() {
+    alert('adupe Oluwa')
+    // this.prices = document.getElementsByClassName('prices')
+    // this.prices.display = 'block'
+    // document.getElementsByClassName
+    // this.test = true
+  }
+  load() {
+    
+  }
+  deleteCourse(courseId: string)
+  {
+    const userData = localStorage.getItem('user_data');
+    // console.log(this.courses.splice(index));
+    // const removeCourse = userData?.slice()
   }
 }

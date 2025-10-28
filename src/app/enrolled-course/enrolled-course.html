@@ -1,1 +1,24 @@
-<p>enrolled-course works!</p>
+<div class="details-container" [ngClass]="{'dark-mode': isDarkMode}">
+  <header class="topbar">
+    <div class="topbar-left">
+      <a [routerLink]="['/']" class="back-btn" aria-label="Back to dashboard">← Back</a>
+      <h1 class="topbar-logo">MOScholar</h1>
+    </div>
+  </header>
+  <main class="main-content">
+    <section class="course-details" *ngIf="course">
+      <img [src]="course.image" alt="{{ course.title }}" class="course-image" (error)="course.image = 'assets/placeholder.jpg'">
+      <p *ngIf="!course.image || course.image === 'assets/placeholder.jpg'" class="no-image">No image available</p>
+      <h1 class="course-title">{{ course.title }}</h1>
+      <p class="course-author">Instructor: {{ course.author || 'Unknown' }}</p>
+      <p class="course-description">{{ course.description }}</p>
+      <p class="course-price">Price: {{ course.price }} NGN</p>
+      <p class="course-meta">Created: {{ course.createdAt ? (course.createdAt | date:'mediumDate') : 'N/A' }}</p>
+      <p class="course-meta">Enrollments: {{ course.enrollmentCount || 0 }}</p>
+      <button class="btn btn-primary" (click)="enrollCourse()" aria-label="Enroll in {{ course.title }}">Enroll Now</button>
+    </section>
+    <section class="course-details" *ngIf="!course">
+      <p class="error">Course not found.</p>
+    </section>
+  </main>
+</div>

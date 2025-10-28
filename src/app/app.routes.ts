@@ -6,7 +6,7 @@ import { Landingpage } from './landingpage/landingpage';
 import { Signup } from './signup/signup';
 import { Login } from './login/login';
 import { Notfound } from './notfound/notfound';
-// import { CreateCourse } from './create-course/create-course';
+import { EnrolledCourse } from './enrolled-course/enrolled-course';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' }, // ✅ default route
@@ -16,7 +16,8 @@ export const routes: Routes = [
   { path: 'instructor', component: Instructor,},
   { path: 'student', component: Erudite, },
   { path: '404page', component: Notfound },
-  { path: '**', redirectTo: '404page' } // ✅ wildcard last
+  {path:'enrolled', component:EnrolledCourse},
+  { path: '**', redirectTo: 's404page' } // ✅ wildcard last
 ];
 
 @NgModule({
